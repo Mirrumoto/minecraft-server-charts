@@ -10,7 +10,7 @@ Please refer to Helm's [documentation](https://helm.sh/docs/) to get started.
 Once Helm is set up properly, add the repo as follows:
 
 ```console
-helm repo add itzg https://mirrumoto.github.io/minecraft-server-charts/
+helm repo add mirrumoto https://mirrumoto.github.io/minecraft-server-charts/
 ```
 
 You can then run `helm search repo itzg` to see the charts.
