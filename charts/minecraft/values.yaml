@@ -15,8 +15,8 @@ replicaCount: 1
 ##
 resources:
   requests:
-    memory: 512Mi
-    cpu: 500m
+    memory: 4096Mi
+    cpu: 750m
 
 lifecycle:
   postStart: []
@@ -195,15 +195,15 @@ minecraftServer:
   # Sets the area that non-ops can not edit (0 to disable)
   spawnProtection: 16
   # Max view distance (in chunks).
-  viewDistance: 10
+  viewDistance: 16
   # Define this if you want a specific map generation seed.
   levelSeed:
   # One of: creative, survival, adventure, spectator
   gameMode: survival
   # Message of the Day
-  motd: "Welcome to Minecraft on Kubernetes!"
+  motd: "Welcome to my K8s powered MC server"
   # If true, enable player-vs-player damage.
-  pvp: default
+  pvp: false
   # One of: DEFAULT, FLAT, LARGEBIOMES, AMPLIFIED, CUSTOMIZED
   levelType: DEFAULT
   # When levelType == FLAT or CUSTOMIZED, this can be used to further customize map generation.
@@ -232,7 +232,7 @@ minecraftServer:
   # Require public key to be signed by Mojang to join
   enforceSecureProfile: default
   # If you adjust this, you may need to adjust resources.requests above to match.
-  memory: 1024M
+  memory: 2048M
   # General JVM options to be passed to the Minecraft server invocation
   jvmOpts: ""
   # Options like -X that need to proceed general JVM options
@@ -309,7 +309,7 @@ minecraftServer:
 
   rcon:
     # If you enable this, make SURE to change your password below.
-    enabled: false
+    enabled: true
     # By default, the container will generate a random password at startup
     # to ensure internal RCON tooling, including a backup container,
     # can be used, but the password is secure.
@@ -396,8 +396,8 @@ persistence:
   # storageClass: "-"
   dataDir:
     # Set this to false if you don't care to persist state between restarts.
-    enabled: false
-    Size: 1Gi
+    enabled: true
+    Size: 5Gi
     accessModes:
       - ReadWriteOnce
     # existingClaim: nil
@@ -418,10 +418,10 @@ rconServiceLabels: {}
 
 # PLEASE NOTE! rcon must be enabled above!  It does NOT require a nodePort or loadBalancerIP
 mcbackup:
-  enabled: false
+  enabled: true
 
   image:
-    repository: itzg/mc-backup
+    repository: mirrumoto/mc-backup
     tag: latest
     pullPolicy: IfNotPresent
 
